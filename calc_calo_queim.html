@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Calorias Queimadas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(90, 0, 90);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+        }
+        .container {
+            background: pink;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border: palevioletred solid 8px;
+        }
+        
+        .container h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: rgb(121, 16, 51);
+        }
+        .container h2 {
+            margin: 10px 0;
+            color: rgb(121, 16, 51);
+        }
+
+        .container input {
+            width: 93%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+
+        .container select {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: palevioletred;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        /*.container button:hover {
+            background-color: palevioletred;
+        }*/
+        
+        button:hover {
+            transition: 0.2s;
+            background-color: rgb(166, 62, 97);
+        }
+        button:active {
+            transition: 0.2s;
+            background-color: rgb(136, 32, 67);
+        }
+        #p {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><u>Calorias Queimadas</u></h1>
+        <div>
+            <h2>Atividade</h2>
+            <select id="atividade">
+                <option value="Corrida">Corrida</option>
+                <option value="Caminhada">Caminhada</option>
+            </select>
+        </div>
+        <div>
+            <h2>Peso (kg)</h2>
+            <input id="peso" type="number" min="0.01" placeholder="ex: 65">
+        </div>
+        <div>
+            <h2>Tempo (h)</h2>
+            <input id="tempo" type="number" min="0.01" placeholder="ex: 1">
+        </div>
+        <button onclick="caloriasQueimadas()">Calcular</button>
+        <p id="p"></p>
+    </div>
+
+    <script>
+        function caloriasQueimadas() {
+            let atividade = document.getElementById("atividade").value;
+            let met = 0;
+                if (atividade === "Caminhada"){
+                    met = 3
+                }
+                else if(atividade === "Corrida"){
+                    met = 8
+                }
+                else {
+                    alert("Erro: Atividade indefinida. Por favor, selecione uma atividade válida.");
+                    return;
+                }
+                
+            let peso = parseFloat(document.getElementById("peso").value);
+            let tempo = parseFloat(document.getElementById("tempo").value);
+
+            if (isNaN(peso) || peso <= 0) {
+                document.getElementById("p").innerHTML = "Insira um peso válido.";
+                return;
+            }
+
+            if (isNaN(tempo) || tempo <= 0) {
+                document.getElementById("p").innerHTML = "Insira um peso válido.";
+                return;
+            }
+
+            let caloriasQueimadas = met * peso * tempo;
+
+            document.getElementById("p").innerHTML = "Calorias queimadas: " + caloriasQueimadas + " kcal";
+        }
+    </script>
+</body>
+</html>

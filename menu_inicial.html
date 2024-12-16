@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Inicial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(90, 0, 90);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .menu {
+            text-align: center;
+            background: pink;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            border: palevioletred solid 8px;
+        }
+        .menu h1 {
+            margin-bottom: 20px;
+        }
+        .menu button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: palevioletred;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu button:hover {
+            transition: 0.2s;
+            background-color: rgb(166, 62, 97);
+        }
+        button:active {
+            transition: 0.2s;
+            background-color: rgb(136, 32, 67);
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <h1>Escolha uma Calculadora</h1>
+        <button onclick="location.href='calculadora_imc.html'">Calculadora de IMC</button>
+        <button onclick="location.href='calc_consumo_agua.html'">Simulador de Consumo de Água</button>
+        <button onclick="location.href='calc_freq_cardiaca.html'">Calculadora de Frequência Cardíaca</button>
+        <button onclick="location.href='calc_calo_queim.html'">Simulador de Calorias Queimadas</button>
+        <button onclick="location.href='calc_expec_vida.html'">Simulador Expectativa de Vida</button>
+    </div>
+</body>
+</html>

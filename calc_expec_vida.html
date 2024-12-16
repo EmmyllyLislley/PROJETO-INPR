@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Expectativa de Vida</title>
+    <style>
+        body {
+               font-family: Arial, sans-serif;
+               margin: 0;
+               padding: 0;
+               background-color: purple;
+               color: #333;
+               line-height: 1.6;
+           }
+   
+           h1 {
+               text-align: center;
+               margin-top: 20px;
+               color: black;
+               color: rgb(121, 16, 51);
+           }
+   
+           form {
+               max-width: 600px;
+               margin: 20px auto;
+               background: pink;
+               padding: 20px;
+               border-radius: 20px;
+               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+               border: palevioletred solid 8px;
+           }
+   
+           h2 {
+               color: black;
+               font-size: 1.2em;
+               margin-top: 15px;
+               color: rgb(121, 16, 51);
+           }
+   
+           .campo {
+               margin: 10px 0;
+           }
+   
+           button {
+               display: block;
+               width: 100%;
+               background: palevioletred;
+               color: white;
+               border: none;
+               padding: 10px;
+               font-size: 16px;
+               border-radius: 5px;
+               cursor: pointer;
+               transition: 0.3s;
+               margin-top: 15px;
+           }
+   
+           
+            button:hover {
+                transition: 0.2s;
+                background-color: rgb(166, 62, 97);
+            }
+            button:active {
+                transition: 0.2s;
+                background-color: rgb(136, 32, 67);
+            }
+   
+           input[type="number"] {
+               width: 100%;
+               padding: 8px;
+               margin: 8px 0;
+               border: 1px solid #ddd;
+               border-radius: 4px;
+               box-sizing: border-box;
+           }
+           p {
+               text-align: center;
+               font-size: 1.2em;
+               color: #333;
+               margin-top: 20px;
+           }
+           .erro {
+               color: red;
+               font-size: 1em;
+               text-align: center;
+           }
+   </style>
+</head>
+<body>
+    <form>
+        <h1><u>Simulador de Expectativa de Vida</u></h1>
+        <h2 id="fuma">Você fuma?</h2>
+            <input class="campo" type="radio" name="fuma" value="sim">Sim
+            <input class="campo" type="radio" name="fuma" value="nao">Não<br>
+
+        <h2  id="bebida">Você consome bebidas alcoólicas frequentemente?</h2>
+            <input class="campo" type="radio" name="bebida" value="sim">Sim
+            <input class="campo" type="radio" name="bebida" value="nao">Não<br>
+
+        <h2 id="exercicio">Você faz exercícios regularmente?</h2>
+            <input class="campo" type="radio" name="exercicio" value="sim">Sim
+            <input class="campo" type="radio" name="exercicio" value="nao">Não<br>
+
+        <h2 id="dieta">Você segue uma dieta saudável?</h2>
+            <input class="campo" type="radio" name="dieta" value="sim">Sim
+            <input class="campo" type="radio" name="dieta" value="nao">Não<br>
+
+        <h2 id="estresse">Você tem um estilo de vida estressante?</h2>
+            <input class="campo" type="radio" name="estresse" value="sim">Sim
+            <input class="campo" type="radio" name="estresse" value="nao">Não<br>
+
+        <h2 id="exames">Você consuta médicos regularmente para exames de rotina?</h2>
+            <input class="campo" type="radio" name="exames" value="sim">Sim
+            <input class="campo" type="radio" name="exames" value="nao">Não<br>
+
+        <h2>Quantas horas você dorme por noite?</h2>
+            <input id="hora-sono" class="campo" type="number" min="0" max="24" step="1" placeholder="De 0 a 24">
+            
+
+        <h2>Quantos dias por semana você pratica hobbies ou atividades de lazer?</h2>
+        <input id="dias-hobbies" class="campo" type="number" min="0" max="7" step="1" placeholder="De 0 a 7"><br>
+        
+
+        <button class="buttom" type="button" onclick="expectativa_vida()">Calcular</button>
+        <p id="p"></p>
+        <h3 id="error-msg" style="display: none; color: red">Por favor, preencha todos os campos corretamente!</h3>
+    </form>
+
+    <script>    
+        function expectativa_vida() {
+            let expectativa = 75;
+
+            let fuma = document.querySelector('input[name="fuma"]:checked');
+            let bebida = document.querySelector('input[name="bebida"]:checked');
+            let exercicio = document.querySelector('input[name="exercicio"]:checked');
+            let dieta = document.querySelector('input[name="dieta"]:checked');
+            let estresse = document.querySelector('input[name="estresse"]:checked');
+            let exames = document.querySelector('input[name="exames"]:checked');
+            let sono = parseFloat(document.getElementById("hora-sono").value);
+            let hobbies = parseInt(document.getElementById("dias-hobbies").value);
+        
+            if (isNaN(sono) || sono > 24 || sono < 0) {
+                document.getElementById('error-msg').style.display = 'block';
+                return;
+            }
+
+            if (isNaN(hobbies) || hobbies > 7 || hobbies < 0) {
+                document.getElementById('error-msg').style.display = 'block';
+                return;
+            }
+
+            if (!fuma || !bebida || !exercicio || !dieta || !estresse || !exames) {
+                document.getElementById('error-msg').style.display = 'block';
+                return;
+            }
+            
+
+            if (fuma.value === "sim") {
+                expectativa -= 5
+            }
+
+            if (bebida.value === "sim") {
+                expectativa -= 3
+            }
+
+            if (exercicio.value === "sim") {
+                expectativa += 2
+            }
+
+            if (dieta.value === "sim") {
+                expectativa += 3
+            }
+
+            if (estresse.value === "sim") {
+                expectativa -= 4
+            }
+
+            if (exames.value === "sim") {
+                expectativa += 2
+            }
+
+            if (sono < 6) {
+                expectativa -= 2
+            }
+            else if (sono >= 6 && sono <= 8) {
+                expectativa += 0
+            }
+            else if (sono >= 8){
+                expectativa -= 1
+            }
+
+            if (hobbies === 0) {
+                expectativa -= 3
+            }
+            else if (hobbies >=1 && hobbies<= 3) {
+                expectativa += 0
+            }
+            else if (hobbies > 3){
+                expectativa += 2
+            }
+
+            document.getElementById("p").innerText = "Sua expectativa é de " + expectativa + " anos."
+        }
+        
+    </script>
+</body>
+</html>

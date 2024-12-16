@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Frequência Cardíaca</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(90, 0, 90);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: pink;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            border: palevioletred solid 8px;
+        }
+        .container h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: rgb(121, 16, 51);
+        }
+        .container h2 {
+            margin: 10px 0;
+            color: rgb(121, 16, 51);
+        }
+        .container input {
+            width: 93%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+
+        .container select {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+
+        .container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: palevioletred;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        /*.container button:hover {
+            background-color: palevioletred;
+        }*/
+        
+        button:hover {
+            transition: 0.2s;
+            background-color: rgb(166, 62, 97);
+        }
+        button:active {
+            transition: 0.2s;
+            background-color: rgb(136, 32, 67);
+        }
+        #p {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><u>Calculadora de Frequência Cardíaca</u></h1>
+        <div>
+            <h2>Idade</h2>
+            <input id="idade" type="number" placeholder="ex: 20">
+        </div>
+        <div>
+            <h2>Exercício: intensidade</h2>
+            <select id="intensidade">
+                <option value="0.5">50% Leve </option>
+                <option value="0.7">70% Moderado </option>
+                <option value="0.85">85% Intenso </option>
+            </select>
+        </div>
+        <button onclick="frequencia_ideal()">Calcular</button>
+        <p id="p"></p>
+    </div>
+
+    <script>
+        function frequencia_ideal() {
+            let idade = parseInt(document.getElementById("idade").value);
+            let intensidade = parseFloat(document.getElementById("intensidade").value);
+
+            if (isNaN(idade) || idade <= 0) {
+                document.getElementById("p").textContent = "Por favor, insira uma idade válida!";
+                return;
+            }
+
+            let frequencia_ideal = (220 - idade) * intensidade
+
+            document.getElementById("p").textContent = "Frequência cardíaca ideal de " + frequencia_ideal + " bmp"
+        }
+    </script>
+</body>
+</html>

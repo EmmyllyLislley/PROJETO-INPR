@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(90, 0, 90);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calculadora {
+            background: pink;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow:  0 0 20px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            border: palevioletred solid 8px;
+        }
+        .calculadora h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            margin-block-end: 35px;
+            color: rgb(121, 16, 51);
+        }
+        .calculadora .item h2 {
+            margin: 10px 0;
+            color: rgb(121, 16, 51);
+        }
+        .calculadora input, .calculadora textarea, .calculadora button {
+            width: 90%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 15px;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+        .calculadora textarea {
+            resize: none;
+            height: 80px;
+        }
+        .calculadora button {
+            background-color: palevioletred;
+            color: white;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+            width: 96%;
+        }
+        /*.calculadora button:hover {
+            background-color: palevioletred;
+        }*/
+        button:hover {
+            transition: 0.2s;
+            background-color: rgb(166, 62, 97);
+        }
+        button:active {
+            transition: 0.2s;
+            background-color: rgb(136, 32, 67);
+        }
+    </style>
+</head>
+<body>
+    <div class="calculadora">
+        <div class="container">
+            <h1><u>CALCULADORA DE IMC</u></h1>
+            <div class="item">
+                <h2>Altura em metros:</h2>
+                <input id="altura" type="number" min="0.01" placeholder="ex: 1.70">
+            </div>
+            <div class="item">
+                <h2>Peso em kg:</h2>
+                <input id="peso" type="number" min="0.01" placeholder="ex: 65">
+            </div>
+           <br>
+            <button onclick="imc()">Calcular</button>
+            <textarea id="textarea" readonly></textarea>
+        </div>
+    </div> 
+   
+    <script>
+        function imc() {
+            let altura = parseFloat(document.getElementById("altura").value);
+            let peso = parseFloat(document.getElementById("peso").value);
+            let resultado = ""
+
+            if (isNaN(altura) || isNaN(peso) || altura <= 0 || peso <= 0) {
+                resultado = 'Insira valores válidos para altura e peso.';
+            }
+            else {
+            let imc = (peso / (altura * altura)).toFixed(1);
+            resultado = "Seu IMC é: " + imc;
+
+                if(imc <18.5){
+                    resultado += " Abaixo do peso!";
+                }
+                else if(imc >=18.5 && imc <=25){
+                    resultado += " Peso normal.";
+                }
+                else if(imc >25){
+                    resultado += " Sobrepeso ou obesidade!";
+                }
+            }
+            document.getElementById("textarea").value = resultado;
+        }
+    </script>
+</body>
+</html>

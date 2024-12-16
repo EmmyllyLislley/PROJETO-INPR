@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Consumo de Água</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; color:  rgb(121, 16, 51);
+            margin: 0;
+            padding: 0;
+            background-color: rgb(90 ,0, 90);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: pink;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            border: palevioletred solid 8px;
+
+        }
+        .container h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: rgb(121, 16, 51);
+        }
+        .peso h2,
+        .container h2 {
+            margin-bottom: 10px;
+        }
+        input, button, textarea {
+            width: 93%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid pink;
+            border-radius: 5px;
+        }
+        button {
+            background-color: palevioletred;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        
+        button:hover {
+            transition: 0.2s;
+            background-color: rgb(166, 62, 97);
+        }
+        button:active {
+            transition: 0.2s;
+            background-color: rgb(136, 32, 67);
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1><u>CONSUMO DE ÁGUA IDEAL</u></h1>
+        <div class="peso">
+            <h2>Peso (kg)</h2>
+            <input id="peso" type="number" placeholder="ex: 65">
+        </div>
+        <button onclick="litros_agua()">Calcular</button>
+        <div>
+            <h2>Resultado</h2>
+            <textarea id="textarea"></textarea>
+        </div>
+    </div>
+
+    <script>
+        function litros_agua() {
+            let peso = parseFloat(document.getElementById("peso").value);
+
+            let litros_agua = peso * 0.035;
+
+            document.getElementById("textarea").value = litros_agua.toFixed(1) + " litros por dia."
+        }
+    </script>
+</body>
+</html>
